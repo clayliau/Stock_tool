@@ -10,7 +10,7 @@ class FullMarketDailyTrade(Base):
     __tablename__ = 'fullmarketdailytrade'
 
     id = Column(Integer, primary_key = True)
-    tradeDate = Column(Date())
+    tradeDate = Column(Date(), unique = True)
     tradeVolume = Column(Integer)
     tradeValue = Column(Integer)
     transaction = Column(Integer)
