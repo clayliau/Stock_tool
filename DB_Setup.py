@@ -2,7 +2,7 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
-from sqlalchemy.types import Boolean, Date, Float, BigInteger
+from sqlalchemy.types import Boolean, Date, Float
 
 Base = declarative_base()
 
@@ -16,14 +16,19 @@ class FullMarketDailyTrade(Base):
     transaction = Column(Integer)
     TAIEX = Column(Float())
     change = Column(Float())
+    avg5d = Column(Float())
+    avg10d = Column(Float())
+    avg20d = Column(Float())
+    avg30d = Column(Float())
+    avg60d = Column(Float())
 
 class SingleStockDaily(Base):
     __tablename__ = 'singlestockdaily'
     
     id = Column(Integer, primary_key = True)
     tradeDate = Column(Date())
-    tradeVolume = Column(BigInteger)
-    tradeValue = Column(BigInteger)
+    tradeVolume = Column(Integer)
+    tradeValue = Column(Integer)
     openingprice = Column(Float())
     highestprice = Column(Float())
     lowestprice = Column(Float())
@@ -31,6 +36,11 @@ class SingleStockDaily(Base):
     change = Column(Float())
     transaction = Column(Integer)
     stockid = Column(Integer)
+    avg5d = Column(Float())
+    avg10d = Column(Float())
+    avg20d = Column(Float())
+    avg30d = Column(Float())
+    avg60d = Column(Float())
 
 engine = create_engine('sqlite:///taiwanstock.db')
 Base.metadata.create_all(engine)
