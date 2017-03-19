@@ -49,5 +49,8 @@ class SingleStockDaily(Base):
     avg60d = Column(Float())
     stocknameid = relationship(StockNameID)
 
+    def checkUnique(self, session, checkList):
+        return session.query(SingleStockDaily).filter(SingleStockDaily.tradeDate==checkList[0],SingleStockDaily.stockid==checkList[1]).first()
+
 engine = create_engine('sqlite:///taiwanstock.db')
 Base.metadata.create_all(engine)
