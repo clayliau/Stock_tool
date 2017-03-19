@@ -22,6 +22,12 @@ class FullMarketDailyTrade(Base):
     avg30d = Column(Float())
     avg60d = Column(Float())
 
+class StockNameID(Base):
+    __tablename__ = 'stocknameid'
+    id = Column(Integer, primary_key = True)
+    stockid = Column(String(10), unique = True)
+    stockname = Column(String(30), unique = True)
+
 class SingleStockDaily(Base):
     __tablename__ = 'singlestockdaily'
     
@@ -35,12 +41,13 @@ class SingleStockDaily(Base):
     closingtprice = Column(Float())
     change = Column(Float())
     transaction = Column(Integer)
-    stockid = Column(Integer)
+    stockid = Column(String(10), ForeignKey('stocknameid.stockid'))
     avg5d = Column(Float())
     avg10d = Column(Float())
     avg20d = Column(Float())
     avg30d = Column(Float())
     avg60d = Column(Float())
+    stocknameid = relationship(StockNameID)
 
 engine = create_engine('sqlite:///taiwanstock.db')
 Base.metadata.create_all(engine)
