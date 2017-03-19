@@ -11,8 +11,8 @@ class FullMarketDailyTrade(Base):
 
     id = Column(Integer, primary_key = True)
     tradeDate = Column(Date(), unique = True)
-    tradeVolume = Column(Integer)
-    tradeValue = Column(Integer)
+    tradeVolume = Column(Float())
+    tradeValue = Column(Float())
     transaction = Column(Integer)
     TAIEX = Column(Float())
     change = Column(Float())
@@ -33,8 +33,8 @@ class SingleStockDaily(Base):
     
     id = Column(Integer, primary_key = True)
     tradeDate = Column(Date())
-    tradeVolume = Column(Integer)
-    tradeValue = Column(Integer)
+    tradeVolume = Column(Float())
+    tradeValue = Column(Float())
     openingprice = Column(Float())
     highestprice = Column(Float())
     lowestprice = Column(Float())
